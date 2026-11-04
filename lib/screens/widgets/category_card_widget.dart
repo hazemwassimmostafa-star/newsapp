@@ -3,8 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsapp/common/app_text_style.dart';
 import 'package:newsapp/common/extension/widget_extension.dart';
 import 'package:newsapp/common/themes/app_colors.dart';
-import 'package:newsapp/enums/category_enum.dart';
+import 'package:newsapp/common/enums/category_enum.dart';
 import 'package:newsapp/l10n/app_localizations.dart';
+import 'package:newsapp/news/view/screen/main_screen.dart';
+import 'package:newsapp/news/view_model/provider/main_screen_provider.dart.dart';
+import 'package:provider/provider.dart';
 
 class CategoryCardWidget extends StatelessWidget {
   const CategoryCardWidget({
@@ -95,41 +98,50 @@ class CategoryCardWidget extends StatelessWidget {
                   ),
                 ),
 
-                Container(
-                  width: 178.w,
-                  height: 55.h,
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(84.r),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      if (!isEven)
-                        CircleAvatar(
-                          backgroundColor: arrowBackgroundColor,
-                          radius: 27.r,
-                          child: Icon(Icons.arrow_back_ios, color: arrowColor),
-                        ),
-
-                      Text(
-                        l10n.viewAll,
-                        style: AppTextStyle.styles20w700white.copyWith(
-                          fontSize: 24.sp,
-                          color: buttonTextColor,
-                        ),
-                      ).symtricpadding(vertical: 9.h, hrozintal: 12),
-
-                      if (isEven)
-                        CircleAvatar(
-                          backgroundColor: arrowBackgroundColor,
-                          radius: 27.r,
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            color: arrowColor,
+                InkWell(
+                  onTap: () => Provider.of<MainScreenProvider>(
+                    context,
+                    listen: false,
+                  ).changeCategory(categoryEnum),
+                  child: Container(
+                    width: 178.w,
+                    height: 55.h,
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(84.r),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        if (!isEven)
+                          CircleAvatar(
+                            backgroundColor: arrowBackgroundColor,
+                            radius: 27.r,
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                              color: arrowColor,
+                            ),
                           ),
-                        ),
-                    ],
+
+                        Text(
+                          l10n.viewAll,
+                          style: AppTextStyle.styles20w700white.copyWith(
+                            fontSize: 24.sp,
+                            color: buttonTextColor,
+                          ),
+                        ).symtricpadding(vertical: 9.h, hrozintal: 12),
+
+                        if (isEven)
+                          CircleAvatar(
+                            backgroundColor: arrowBackgroundColor,
+                            radius: 27.r,
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              color: arrowColor,
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
               ],
