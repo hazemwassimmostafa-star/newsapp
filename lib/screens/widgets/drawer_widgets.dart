@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsapp/common/app_text_style.dart';
 import 'package:newsapp/common/themes/app_colors.dart';
 import 'package:newsapp/common/widgets/custom_drop_down_menue_diget.dart';
+import 'package:newsapp/news/view_model/provider/main_screen_provider.dart.dart';
 import 'package:provider/provider.dart';
 import 'package:newsapp/common/themes/theme_provider.dart';
 import 'package:newsapp/common/localization/language_provider.dart';
@@ -39,7 +40,15 @@ class DrawerWidgets extends StatelessWidget {
               Icons.home_outlined,
               color: Theme.of(context).colorScheme.secondary,
             ),
+            onTap: () {
+              Provider.of<MainScreenProvider>(
+                context,
+                listen: false,
+              ).changeCategory(null);
+              Navigator.of(context).pop();
+            },
           ),
+
           Divider(
             endIndent: 16.w,
             indent: 16.w,

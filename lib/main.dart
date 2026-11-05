@@ -4,7 +4,7 @@ import 'package:newsapp/common/localization/language_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsapp/common/themes/app_theme.dart';
 import 'package:newsapp/common/themes/theme_provider.dart';
-import 'package:newsapp/screens/main_screen.dart';
+import 'package:newsapp/news/view/screen/main_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
